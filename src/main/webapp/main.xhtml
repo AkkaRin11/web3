@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<h:head>
+    <title>Подворный Артём Михайлович</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="index.css" rel="stylesheet"/>
+    <h:outputScript name="index.js" library="js" />
+</h:head>
+<h:body>
+    <div class="left">
+        <h:form>
+            <h:outputLabel value="X:"/><br/>
+            <p:selectOneRadio id="selectOneRadio"
+                              value="#{inputBean.radioValue}"
+                              layout="pageDirection"
+                              styleClass="custom-radio-table">
+                <f:selectItem itemLabel="-2" itemValue="-2.0" />
+                <f:selectItem itemLabel="-1.5" itemValue="-1.5" />
+                <f:selectItem itemLabel="-1" itemValue="-1.0" />
+                <f:selectItem itemLabel="-0.5" itemValue="-0.5" />
+                <f:selectItem itemLabel="0" itemValue="0.0" />
+                <f:selectItem itemLabel="0.5" itemValue="0.5" />
+                <f:selectItem itemLabel="1" itemValue="1.0" />
+                <f:selectItem itemLabel="1.5" itemValue="1.5" />
+                <f:selectItem itemLabel="2" itemValue="2.0" />
+                <p:ajax event="change" update="@form" />
+            </p:selectOneRadio>
+            <br/>
+
+            <h:outputLabel value="Y:"/><br/>
+            <span class="ui-float-label">
+                <p:inputText id="float-input" value="#{inputBean.textValue}"/>
+                <p:outputLabel for="@previous" value="from -3 to 5"/>
+            </span><br/>
+
+
+        <h:outputLabel value="R:"/><br/>
+
+            <p:inputText id="sliderV" value="#{inputBean.sliderValue}" style="margin-bottom: 10px;"/>
+            <p:slider for="sliderV" minValue="1" maxValue="4" step="0.25"/>
+
+
+            <h:commandButton value="Отправить"
+                             action="#{inputBean.sendData}"
+                             onclick="drawCanvas(#{inputBean.sliderValue});"
+                             styleClass="button">
+                <f:ajax execute="@form" render="form2:dynamicContent" />
+            </h:commandButton>
+        </h:form>
+    </div>
+
+    <div class="center">
+        <canvas id="graphCanvas" width="400" height="400"></canvas>
+    </div>
+
+    <div class="right">
+        <h3>Ответы сервера:</h3>
+        <h:form id="form2">
+            <h:outputText id="dynamicContent" value="#{resultListBean.customHtml}" escape="false"/>
+        </h:form>
+    </div>
+
+</h:body>
+</html>

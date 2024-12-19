@@ -1,0 +1,99 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    font-family: fantasy;
+    margin-top: 80px;
+}
+
+header {
+    font-size: 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.left {
+    width: 20%;
+    padding: 10px;
+    background-color: #AFEEEE;
+    border-radius: 10px;
+}
+
+.center {
+    width: 35%;
+    text-align: center;
+    background-color: #AFEEEE;
+    border-radius: 10px;
+}
+
+.right {
+    width: 40%;
+    padding: 10px;
+    background-color: #AFEEEE;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.selected-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    border: 1px solid #0056b3;
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.highlight {
+    background-color: #ff0000 !important;
+}
+
+.custom-radio-table {
+    border: 2px solid #AFEEEE;
+    background-color: #AFEEEE;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.custom-radio-table td {
+    padding: 5px 10px;
+}
+
+.custom-radio-table input[type="radio"] {
+    margin-right: 10px;
+}
