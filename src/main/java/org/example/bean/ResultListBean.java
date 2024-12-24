@@ -1,5 +1,6 @@
 package org.example.bean;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -22,6 +23,11 @@ public class ResultListBean implements Serializable {
     @Getter
     @Setter
     private String customHtml;
+
+    @PostConstruct
+    public void init() throws SQLException {
+        getResultTableHtml();
+    }
 
     public void getResultTableHtml() throws SQLException {
         List<List<String>> resultTable = db.getResultTable();

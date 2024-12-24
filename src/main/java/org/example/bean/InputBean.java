@@ -1,5 +1,6 @@
 package org.example.bean;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -19,6 +20,9 @@ public class InputBean implements Serializable {
     private String textValue = "0";
     private double sliderValue = 1;
     private double radioValue = 0;
+    private double hiddenField1 = 0;
+    private double hiddenField2 = 0;
+    private double hiddenField3 = 0;
 
     @Inject
     DB db;
@@ -31,18 +35,18 @@ public class InputBean implements Serializable {
             db.addResult(radioValue, Double.valueOf(textValue), sliderValue, System.currentTimeMillis());
             resultListBean.getResultTableHtml();
 
-        } else {
-            // что-то сделать, тип неправильные данные
         }
     }
 
-    /*
-    Функуия отправки данных
-    Фунция отрисовки Графика
-    Стартовая страница
-     */
+    public void sendGraphData() throws SQLException {
+        if (Validation.checkValidNumber(textValue)){
+            db.addResult(hiddenField1, hiddenField2, hiddenField3, System.currentTimeMillis());
+            resultListBean.getResultTableHtml();
+
+        }
+    }
 
     public String redirectToPage() {
-        return "main?faces-redirect=true";  // Перенаправление
+        return "main?faces-redirect=true";
     }
 }

@@ -5,23 +5,43 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<head>
+<h:head>
     <title>Подворный Артём Михайлович</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="index.css" rel="stylesheet"/>
-</head>
-<body>
-<header>
-    <div>Подворный Артём Михайлович</div>
-    <div>Группа: P3213 Вариант: 655</div>
-</header>
+    <h:outputStylesheet name="index.css" library="css"/>
+</h:head>
+<h:body>
+    <header>
+        <div>Подворный Артём Михайлович</div>
+        <div>Группа: P3213 Вариант: 443</div>
+    </header>
+    <div class="start_middle">
+        <div class="start_center">
+            <div class="card">
+                <h:form>
+                    <p:clock displayMode="analog"/>
+                </h:form>
+            </div>
 
+            <h:form>
+                <h:commandButton styleClass="glow-on-hover" value="Тыкаться"
+                                 action="#{inputBean.redirectToPage}"/>
+            </h:form>
+        </div>
 
-<h:form>
-    <h:commandButton value="Смотреть аниме"
-                     action="#{inputBean.redirectToPage}"/>
-</h:form>
+        <div class="image-container">
+            <div class="image-box">
+                <img src="1.jpg" alt="Картинка 1" />
+            </div>
+            <div class="image-box">
+                <img src="2.jpg" alt="Картинка 2" />
+            </div>
+            <div class="image-box">
+                <img src="3.jpg" alt="Картинка 3" />
+            </div>
+        </div>
+    </div>
 
-</body>
+</h:body>
 </html>

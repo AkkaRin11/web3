@@ -6,17 +6,16 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-
 <h:head>
     <title>Подворный Артём Михайлович</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="index.css" rel="stylesheet"/>
+    <link href="resources/css/index.css" rel="stylesheet"/>
     <h:outputScript name="index.js" library="js" />
 </h:head>
 <h:body>
     <div class="left">
-        <h:form>
+        <h:form id="form1">
             <h:outputLabel value="X:"/><br/>
             <p:selectOneRadio id="selectOneRadio"
                               value="#{inputBean.radioValue}"
@@ -37,7 +36,9 @@
 
             <h:outputLabel value="Y:"/><br/>
             <span class="ui-float-label">
-                <p:inputText id="float-input" value="#{inputBean.textValue}"/>
+                <p:inputText id="float-input" value="#{inputBean.textValue}">
+                    <f:validator validatorId="customRangeValidator" />
+                </p:inputText>
                 <p:outputLabel for="@previous" value="from -3 to 5"/>
             </span><br/>
 
@@ -47,12 +48,21 @@
             <p:inputText id="sliderV" value="#{inputBean.sliderValue}" style="margin-bottom: 10px;"/>
             <p:slider for="sliderV" minValue="1" maxValue="4" step="0.25"/>
 
-
-            <h:commandButton value="Отправить"
+            <h:commandButton styleClass="glow-on-hover"
+                             value="Отправить"
                              action="#{inputBean.sendData}"
-                             onclick="drawCanvas(#{inputBean.sliderValue});"
-                             styleClass="button">
-                <f:ajax execute="@form" render="form2:dynamicContent" />
+                             onclick="setTimeout(() => {drawCanvas();},600)">
+                <f:ajax execute="@form" render="form2:dynamicContent form1" />
+            </h:commandButton>
+        </h:form>
+
+        <h:form id="hiddenForm">
+            <h:inputText id="hiddenField1" value="#{inputBean.hiddenField1}" style="display:none;" />
+            <h:inputText id="hiddenField2" value="#{inputBean.hiddenField2}" style="display:none;" />
+            <h:inputText id="hiddenField3" value="#{inputBean.hiddenField3}" style="display:none;" />
+
+            <h:commandButton id="hiddenButton" style="display:none;" action="#{inputBean.sendGraphData}">
+                <f:ajax execute="@form" render="form2:dynamicContent form1" />
             </h:commandButton>
         </h:form>
     </div>

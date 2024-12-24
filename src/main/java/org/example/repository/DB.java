@@ -70,7 +70,7 @@ public class DB {
         ps.setDouble(3, y);
         ps.setDouble(4, r);
         ps.setString(5, String.valueOf(System.currentTimeMillis() - timeStart));
-        ps.setString(6, LocalDateTime.now().toString());
+        ps.setString(6, LocalDateTime.now().toString().split("\\.")[0]);
 
 
         ps.executeUpdate();
